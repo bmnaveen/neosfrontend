@@ -43,6 +43,7 @@ const fetchData=()=>{
 const  reqSign=(e)=>{
 e.preventDefault();
  const tata= fetchData();
+ sessionStorage.setItem(JSON.stringify("id",tata))
  console.log(tata)
 }
   return (
