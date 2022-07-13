@@ -15,23 +15,19 @@ setUser({...user,[id]:value})
 
 const fetchData=async()=>{
     let requestOptions = {
-        headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin':'*'
-       },
         body: JSON.stringify(user),
         method:"POST",
         
     };
     if(signUp){
-       await fetch('http://localhost:3333/register', requestOptions)
+       await fetch('https://todo-neos.herokuapp.com/register', requestOptions)
             .then(response =>{
 console.log(response.json())
             }).catch((err)=>{
                 console.log(err)
             })  
     }else{
-        await fetch('http://localhost:3333/signin', requestOptions)
+        await fetch('https://todo-neos.herokuapp.com/signin', requestOptions)
             .then(response =>{
 console.log(response.json())
             }).catch((err)=>{
