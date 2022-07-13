@@ -21,19 +21,21 @@ const fetchData=()=>{
     };
     if(signUp){
         fetch("https://todo-neos.herokuapp.com/register", requestOptions).then(function(u){ 
-            return u.json();
+           return  u.json();
         })
         .then(function(j) { 
-            console.log(j); 
+           console.log(j)
+           sessionStorage.setItem("id",JSON.stringify(j))
         });
           
     }else{
         
         fetch("https://todo-neos.herokuapp.com/signin", requestOptions).then(function(u){ 
-            return u.json();
+           return  u.json();
         })
         .then(function(j) { 
-            console.log(j); 
+            console.log(j)
+             sessionStorage.setItem("id",JSON.stringify(j))
         });
     }
 
@@ -42,9 +44,9 @@ const fetchData=()=>{
 
 const  reqSign=(e)=>{
 e.preventDefault();
- const tata= fetchData();
- sessionStorage.setItem(JSON.stringify("id",tata))
- console.log(tata)
+fetchData()
+//  sessionStorage.setItem("id",JSON.stringify(tata))
+ 
 }
   return (
     <div className='signIn'>
