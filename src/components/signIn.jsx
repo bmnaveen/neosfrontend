@@ -17,7 +17,10 @@ const fetchData=async()=>{
     let requestOptions = {
         body: JSON.stringify(user),
         method:"POST",
-        
+        headers:{
+            "Access-Control-Allow-Headers": "Accept",
+            "Content-Type": "application/json",
+               }
     };
     if(signUp){
        await fetch('https://todo-neos.herokuapp.com/register', requestOptions)
