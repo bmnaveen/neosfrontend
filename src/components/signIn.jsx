@@ -13,37 +13,37 @@ const {id,value}=e.target;
 setUser({...user,[id]:value})
 }
 
-const fetchData=async()=>{
+const fetchData=()=>{
+    
     let requestOptions = {
         body: JSON.stringify(user),
         method:"POST",
-        headers:{
-            "Access-Control-Allow-Headers": "Accept",
-            "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': '*',
-            "mode":"cors"
-               }
     };
     if(signUp){
-       await fetch('https://todo-neos.herokuapp.com/register', requestOptions)
-            .then(response =>{
-console.log(response.json())
-            }).catch((err)=>{
-                console.log(err)
-            })  
+        fetch("https://todo-neos.herokuapp.com/register", requestOptions).then(function(u){ 
+            return u.json();
+        })
+        .then(function(j) { 
+            console.log(j); 
+        });
+          
     }else{
-        await fetch('https://todo-neos.herokuapp.com/signin', requestOptions)
-            .then(response =>{
-console.log(response.json())
-            }).catch((err)=>{
-                console.log(err)
-            }) 
+        
+        fetch("https://todo-neos.herokuapp.com/signin", requestOptions).then(function(u){ 
+            return u.json();
+        })
+        .then(function(j) { 
+            console.log(j); 
+        });
     }
+
+    
 }
 
-const reqSign=(e)=>{
+const  reqSign=(e)=>{
 e.preventDefault();
-fetchData();
+ const tata= fetchData();
+ console.log(tata)
 }
   return (
     <div className='signIn'>
