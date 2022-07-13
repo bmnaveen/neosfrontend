@@ -20,7 +20,8 @@ const fetchData=async()=>{
         headers:{
             "Access-Control-Allow-Headers": "Accept",
             "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            "mode":"cors"
                }
     };
     if(signUp){
