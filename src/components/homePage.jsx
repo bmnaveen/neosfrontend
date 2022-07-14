@@ -58,6 +58,7 @@ let requestOptions = {
     body: JSON.stringify(todoData),
     method:"POST",
 };
+//https://todo-neos.herokuapp.com/addtodo
 fetch("https://todo-neos.herokuapp.com/addtodo", requestOptions).then(function(u){ 
     return  u.json();
  })
