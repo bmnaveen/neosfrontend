@@ -39,9 +39,7 @@ const changetodoData=(e)=>{
     
     setTodoData({...todoData,[id]:value})
 }
-useEffect(()=>{
-console.log(todoData)
-},[todoData])
+
 const fetchAddTodo=(e)=>{
 e.preventDefault();
 for(let x in todoData){
@@ -63,7 +61,7 @@ fetch("https://todo-neos.herokuapp.com/addtodo", requestOptions).then(function(u
     return  u.json();
  })
  .then(function(j) { 
-    console.log(j)
+    
     window.location.reload()
  }).catch((err)=>{
      alert("Something went wrong try again")
@@ -92,7 +90,7 @@ const fetchGetTodo=(v)=>{
         return  u.json();
      })
      .then(function(j) { 
-        console.log(j)
+        
         setGetTodo(j)
      }).catch((err)=>{
          console.log(err)
@@ -112,7 +110,7 @@ const deleteTodo=(v,e)=>{
     return  u.json();
  })
  .then(function(j) { 
-    console.log(j)
+   
     if(j=="Acess Deniend"){
         alert("Acess Deniend")
     }
