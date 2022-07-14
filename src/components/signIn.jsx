@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const SignIn = () => {
+const SignIn = ({setToggle}) => {
     const [signUp,setSignUp]=useState(false);
     const [user,setUser]=useState({
         Email:"",
@@ -13,8 +13,22 @@ const {id,value}=e.target;
 setUser({...user,[id]:value})
 }
 
+useEffect(()=>{
+    let v=JSON.parse(sessionStorage.getItem("id"));
+    if(v!=null){
+        setToggle(true)
+    }
+},[])
+
 const fetchData=()=>{
     
+    for(let x in user){
+        if(user[x].length<=0){
+            alert("Empty Fields");
+            return;
+        }
+    }
+
     let requestOptions = {
         body: JSON.stringify(user),
         method:"POST",
@@ -24,8 +38,18 @@ const fetchData=()=>{
            return  u.json();
         })
         .then(function(j) { 
-           console.log(j)
-           sessionStorage.setItem("id",JSON.stringify(j))
+            if(j!=null){
+                sessionStorage.setItem("id",JSON.stringify(j))
+                setToggle(true)
+            }else{
+                alert("Invalid Detailes or User already exist")
+                return;
+         }
+           
+        }).catch((err)=>{
+            alert("Something went wrong try again")
+            console.log(err)
+            return
         });
           
     }else{
@@ -34,18 +58,29 @@ const fetchData=()=>{
            return  u.json();
         })
         .then(function(j) { 
-            console.log(j)
+            if(j!=null){
+                sessionStorage.setItem("id",JSON.stringify(j))
+                setToggle(true)
+            }else{
+                alert("Invalid Detailes or User already exist")
+                return;
+         }
              sessionStorage.setItem("id",JSON.stringify(j))
-        });
+        }).catch((err)=>{
+            alert("Something went wrong try again")
+            console.log(err)
+            return;
+        });;
     }
 
-    
+
+  
 }
 
 const  reqSign=(e)=>{
 e.preventDefault();
 fetchData()
-//  sessionStorage.setItem("id",JSON.stringify(tata))
+
  
 }
   return (
@@ -58,7 +93,7 @@ fetchData()
         <br />
         <input onChange={createUser} type="tel" id="Mobile" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/>
         <br />
-        <div className='signOption'> <button onClick={reqSign}>SignIn</button><label>Create account:</label><input onClick={(e)=>{
+        <div className='signOption'> <button onClick={reqSign}>{signUp ? "signUp" :  "SignIn" }</button><label>Create account:</label><input onClick={(e)=>{
            e.target.checked ?  setSignUp(true):setSignUp(false)
         }} type="checkbox" /></div>
     </div>
