@@ -82,9 +82,12 @@ useEffect(()=>{
 
 const fetchGetTodo=(v)=>{
     let requestOptions = {
-        method:"GET",
+        method:"POST",
+        body:{
+            "Id":v
+        }
     };
-    fetch(`https://todo-neos.herokuapp.com/gettodo/${v}`, requestOptions).then(function(u){ 
+    fetch(`https://todo-neos.herokuapp.com/gettodo`, requestOptions).then(function(u){ 
         return  u.json();
      })
      .then(function(j) { 
