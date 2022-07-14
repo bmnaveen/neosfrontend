@@ -88,9 +88,8 @@ const fetchGetTodo=(v)=>{
      })
      .then(function(j) { 
         console.log(j)
-        
+
      }).catch((err)=>{
-         alert("Something went wrong try again")
          console.log(err)
          return
      });
