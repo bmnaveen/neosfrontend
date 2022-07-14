@@ -38,7 +38,7 @@ const fetchData=()=>{
            return  u.json();
         })
         .then(function(j) { 
-            if(j!=null){
+            if(j!="null"){
                 sessionStorage.setItem("id",JSON.stringify(j))
                 setToggle(true)
             }else{
@@ -58,7 +58,7 @@ const fetchData=()=>{
            return  u.json();
         })
         .then(function(j) { 
-            if(j!=null){
+            if(j!="null"){
                 sessionStorage.setItem("id",JSON.stringify(j))
                 setToggle(true)
             }else{

@@ -64,6 +64,7 @@ fetch("https://todo-neos.herokuapp.com/addtodo", requestOptions).then(function(u
  })
  .then(function(j) { 
     console.log(j)
+    window.location.reload()
  }).catch((err)=>{
      alert("Something went wrong try again")
      console.log(err)
@@ -83,16 +84,16 @@ useEffect(()=>{
 const fetchGetTodo=(v)=>{
     let requestOptions = {
         method:"POST",
-        body:{
+        body:JSON.stringify({
             "Id":v
-        }
+        })
     };
     fetch(`https://todo-neos.herokuapp.com/gettodo`, requestOptions).then(function(u){ 
         return  u.json();
      })
      .then(function(j) { 
         console.log(j)
-
+        setGetTodo(j)
      }).catch((err)=>{
          console.log(err)
          return
@@ -107,7 +108,7 @@ const fetchGetTodo=(v)=>{
 
 <div>
     {
-        add ? <div className='signIn'>
+        add ? <div className='createTodo'>
         <label >Todo:</label>
         <br />
         <input  onChange={changetodoData} id='Todo' type="text" />
@@ -117,11 +118,32 @@ const fetchGetTodo=(v)=>{
         <input onChange={changetodoData}   type={"date"} min={accDate} id="Date" />
         <br />
         <div className='signOption'> <button onClick={fetchAddTodo} >Add Todo</button></div>
-    </div> : <div>
-
-        </div>
+    </div> :null
     }
 </div>
+<>
+{
+    getTodo.length>=1 ? <table className='mainTable'>
+    <tr>
+        <th>NO</th>
+        <th>Title</th>
+        <th>Scheduled Date</th>
+        <th>Status</th>
+    </tr>
+    
+{
+    getTodo.map((x,i)=>{
+        return <tr>
+<td>{i+1}</td>
+<td>{x.Todo}</td>
+<td>{x.Date}</td>
+<td>{x.Date<accDate ? "Expired" : "ALive"}</td>
+        </tr>
+    }) 
+}
+        </table> :<h2>Nothing to show</h2>
+}
+</>
 
     </div>
   )
