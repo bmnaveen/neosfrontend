@@ -99,7 +99,29 @@ const fetchGetTodo=(v)=>{
          return
      });
 }
-
+const deleteTodo=(v,e)=>{
+    e.preventDefault()
+    let requestOptions = {
+        method:"POST",
+        body:JSON.stringify({
+            "totoId":v,
+            "userId":JSON.parse(sessionStorage.getItem("id"))
+        })
+    };
+    fetch("https://todo-neos.herokuapp.com/deletetodo", requestOptions).then(function(u){ 
+    return  u.json();
+ })
+ .then(function(j) { 
+    console.log(j)
+    if(j=="Acess Deniend"){
+        alert("Acess Deniend")
+    }
+ }).catch((err)=>{
+     alert("Something went wrong try again")
+     console.log(err)
+     return
+ });
+}
   return (
     <div>
 <button className='butto' onClick={()=>{
@@ -138,6 +160,9 @@ const fetchGetTodo=(v)=>{
 <td>{x.Todo}</td>
 <td>{x.Date}</td>
 <td>{x.Date==accDate ? "Alive" :x.Date<accDate ? "Expired" : "Upcoming"}</td>
+<td><button onClick={(e)=>{
+    deleteTodo(x.id,e)
+}}>Delete</button></td>
         </tr>
     }) 
 }
