@@ -137,7 +137,7 @@ const fetchGetTodo=(v)=>{
 <td>{i+1}</td>
 <td>{x.Todo}</td>
 <td>{x.Date}</td>
-<td>{x.Date<accDate ? "Expired" : "ALive"}</td>
+<td>{x.Date<accDate ? "Expired" : "Alive"}</td>
         </tr>
     }) 
 }
