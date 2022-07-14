@@ -102,7 +102,7 @@ const fetchGetTodo=(v)=>{
 
   return (
     <div>
-<button onClick={()=>{
+<button className='butto' onClick={()=>{
     setAdd(!add)
 }}>{add ? "Cancel" : "Create Todo"}</button>
 

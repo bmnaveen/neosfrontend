@@ -91,11 +91,15 @@ height: 35px;
   .mainTable{
     width: 50%;
     margin: auto;
-    padding-top: 20px;
-    border: solid black;
+    padding-top: 40px;
+    border: solid 3px black;
   }
   
   table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    
+  }
+  .butto{
+    margin-bottom: 30px;
   }
